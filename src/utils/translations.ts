@@ -1,395 +1,410 @@
 
 export const translations = {
   ar: {
-    // الصفحة الرئيسية
+    // Navigation and Basic
     heroTitle: "مخيم إسطنبول الصيفي الترفيهي",
-    heroSubtitle: "مغامرة لا تُنسى في أجمل شواطئ تركيا",
-    slogans: [
-      "أجلب ضحكاتك واتركْ همومك خلفك",
-      "مغامرات تحبس الأنفاس تنتظرك",
-      "صداقات جديدة وذكريات لا تُمحى",
-      "عيش اللحظة واستمتع بكل ثانية",
-      "البحر والجبال ومغامرات لا تنتهي"
-    ],
+    heroSubtitle: "مغامرة لا تُنسى",
     bookNow: "احجز الآن",
-    whatsappContact: "تواصل معنا",
+    whatsappContact: "تواصل واتساب",
     
-    // الأنشطة
-    activitiesTitle: "أنشطتنا المميزة",
+    // Animated Slogans
+    slogans: [
+      "مغامرة لا تُنسى في أجمل شواطئ تركيا 🏖️",
+      "5 ليالي و 6 أيام من المتعة والمغامرة 🎯",
+      "رافتنغ، زبلاين، وألعاب مائية مثيرة 🚣‍♂️",
+      "حفلات شواء وألعاب نارية ساحرة 🎆",
+      "تعارف وصداقات جديدة من كل العالم 🌍",
+      "تصوير احترافي وطيران بالدرون 📸"
+    ],
+    
+    // Trip Information
+    tripInfoTitle: "معلومات الرحلة",
+    date: "التاريخ",
+    duration: "15 يوليو 2025 - 5 ليالي و 6 أيام",
+    price: "السعر",
+    includes: "500$ شامل كل شيء",
+    location: "الموقع",
+    
+    // Activities
+    activitiesTitle: "الأنشطة والفعاليات",
     activities: {
-      rafting: "رحلات الرافتنج المثيرة في الأنهار",
-      zipline: "مغامرات الزيبلاين عبر الطبيعة",
+      rafting: "رافتنغ في الأنهار الجبلية",
+      zipline: "مغامرة الزبلاين المثيرة",
       safari: "جولات السفاري بالموتورات",
-      volleyball: "كرة الطائرة على الشاطئ",
-      football: "كرة القدم الشاطئية",
-      fireworks: "عروض الألعاب النارية المذهلة",
-      barbecue: "حفلات الشواء التركي الأصيل",
-      photography: "جلسات تصوير احترافية",
-      drone: "تصوير بالدرون للذكريات"
+      volleyball: "كرة طائرة شاطئية",
+      football: "كرة قدم جماعية",
+      fireworks: "عروض الألعاب النارية",
+      barbecue: "حفلات الشواء التركي",
+      photography: "جلسات التصوير الاحترافية",
+      drone: "تصوير جوي بالدرون"
     },
     
-    // معلومات الرحلة
-    tripInfoTitle: "تفاصيل الرحلة",
-    duration: "5 ليالي و 6 أيام",
-    date: "15 يوليو 2025",
-    price: "500 دولار للفرد",
-    includes: "شامل الإقامة والوجبات والأنشطة والنقل",
-    location: "شيلا - إسطنبول على البحر مباشرة",
-    
-    // الخدمات المشمولة
-    includedTitle: "الخدمات المشمولة",
+    // What's Included
+    includedTitle: "ما يشمله السعر",
     includedServices: [
-      "الإقامة في مخيم مجهز بالكامل",
-      "جميع الوجبات والمشروبات",
-      "الشاي التركي طوال اليوم",
-      "النقل من وإلى إسطنبول",
-      "جميع الأنشطة والفعاليات",
-      "التصوير الاحترافي",
-      "الإنترنت والكهرباء",
-      "المسابقات والهدايا"
+      "🏨 الإقامة 5 ليالي في أجمل المواقع",
+      "🍽️ جميع الوجبات والمشروبات",
+      "🚐 النقل والتنقل من وإلى إسطنبول",
+      "🎯 جميع الأنشطة والفعاليات",
+      "📸 جلسات تصوير احترافية",
+      "🛸 تصوير جوي بالدرون",
+      "🎆 عروض الألعاب النارية",
+      "🔥 حفلات الشواء التركي",
+      "☕ الشاي التركي الأصيل طوال اليوم",
+      "💡 كهرباء وإنترنت مجاني",
+      "🎁 مسابقات وهدايا مميزة",
+      "👥 أنشطة التعارف والترفيه"
     ],
     
-    // النصائح
-    bringTitle: "لا تنسَ أن تُحضر معك",
+    // What to Bring
+    bringTitle: "ما تحتاج إحضاره",
     bringItems: [
-      "نظارة شمسية للحماية",
-      "حذاء رياضي مريح",
-      "ملابس سباحة",
-      "كريم الحماية من الشمس",
-      "ملابس مريحة للأنشطة",
-      "كاميرا شخصية للذكريات"
+      "🕶️ نظارة شمسية",
+      "👟 حذاء رياضي مريح",
+      "🩱 ملابس سباحة",
+      "🧴 واقي الشمس",
+      "🎽 ملابس رياضية",
+      "📱 شاحن الهاتف",
+      "🧥 جاكيت خفيف للمساء",
+      "🩴 نعال مائية",
+      "🎒 حقيبة صغيرة للرحلات اليومية"
     ],
     
-    // معلومات الاتصال
-    contactTitle: "تواصل معنا",
+    // Contact
+    contactTitle: "اتصل بنا",
     address: "إسطنبول - الفاتح - مقابل ترام واي يوسف باشا رقم 42 مكتب 8",
-    phone: "+905457307235",
+    phone: "+90 545 730 72 35",
     
-    // شروط وأحكام
-    termsTitle: "الشروط والأحكام",
-    termsContent: `
-      شروط وأحكام مخيم إسطنبول الصيفي الترفيهي:
-
-      1. الفئة العمرية المسموحة من 18 إلى 45 عاماً حصرياً
-      2. نرحب بالأزواج والأصدقاء والمجموعات
-      3. السعر شامل جميع الأنشطة والوجبات والإقامة والنقل
-      4. يجب تأكيد الحجز بدفع المبلغ كاملاً
-      5. لا يُسمح بإلغاء الحجز قبل أسبوعين من موعد الرحلة
-      6. المشارك مسؤول عن سلامته الشخصية أثناء الأنشطة
-      7. يجب الالتزام بقوانين وآداب المخيم
-      8. التدخين مسموح في الأماكن المخصصة فقط
-      9. احترام الآخرين والبيئة المحيطة
-      10. إحضار الهوية الشخصية أو جواز السفر إجباري
-    `,
-    agreeTerms: "أوافق على الشروط والأحكام",
-    mustReadTerms: "(يجب قراءة الشروط والأحكام أولاً)",
-    
-    // صفحة الحجز
+    // Booking Page
     bookingTitle: "احجز مغامرتك الآن",
     participantsCount: "عدد المشاركين",
-    relationship: "العلاقة",
+    relationship: "نوع العلاقة",
     couple: "زوجين",
     friends: "أصدقاء",
-    group: "مجموعة",
-    participant: "مشارك",
-    participants: "مشاركين",
+    personalInfo: "البيانات الشخصية",
+    participant: "المشارك",
     husband: "الزوج",
     wife: "الزوجة",
-    male: "ذكر",
-    female: "أنثى",
-    
-    // البيانات الشخصية
-    personalInfo: "البيانات الشخصية",
     name: "الاسم الكامل",
     birthDate: "تاريخ الميلاد",
     gender: "الجنس",
+    male: "ذكر",
+    female: "أنثى",
     nationality: "الجنسية",
     phone: "رقم الهاتف",
     
-    // خيارات الدفع
-    paymentTitle: "خيارات الدفع",
+    // Payment
+    paymentTitle: "طريقة الدفع",
     paymentMethods: {
       bankTransfer: "تحويل بنكي",
-      cashOffice: "دفع نقدي في المكتب",
       paypal: "باي بال",
-      instapay: "إنستا باي",
       vodafoneCash: "فودافون كاش",
+      instapay: "انستا باي",
       papara: "بابارا",
-      revolut: "ريفولت"
+      revolut: "ريفولت",
+      cashOffice: "دفع نقدي في المكتب"
     },
     
+    // Price Summary
     totalAmount: "المبلغ الإجمالي",
-    discount: "خصم",
+    discount: "الخصم",
     finalAmount: "المبلغ النهائي",
-    bookingSubmit: "إتمام الحجز والدفع",
     
-    // رسائل الخطأ
-    ageError: "نعتذر، الفئة العمرية المسموحة من 18 إلى 45 عاماً. نتمنى نراك في رحلة قادمة!",
+    // Terms
+    agreeTerms: "أوافق على الشروط والأحكام",
+    mustReadTerms: "(يجب قراءة الشروط والأحكام أولاً)",
+    termsTitle: "الشروط والأحكام",
+    termsContent: `شروط وأحكام مخيم إسطنبول الصيفي الترفيهي
+
+1. الفئة العمرية المسموحة: من 18 إلى 45 عام حصرياً
+2. يجب تقديم جواز سفر ساري المفعول
+3. الدفع مطلوب كاملاً قبل بداية الرحلة
+4. لا يمكن استرداد المبلغ إلا في حالات القوة القاهرة
+5. الشركة غير مسؤولة عن فقدان الأمتعة الشخصية
+6. يجب الالتزام بقوانين وتعليمات المخيم
+7. ممنوع إحضار المواد الكحولية أو المواد المخدرة
+8. الشركة تحتفظ بحق رفض أي مشارك لا يلتزم بالقوانين
+9. في حالة الإلغاء من قبل العميل قبل 30 يوم يسترد 50% من المبلغ
+10. تطبق الشروط والأحكام على جميع المشاركين
+
+للاستفسارات: +90 545 730 72 35`,
+    
+    // Form Validation
     requiredField: "هذا الحقل مطلوب",
-    
-    // رسائل النجاح
-    bookingSuccess: "تم إرسال طلب الحجز بنجاح! سنتواصل معك قريباً."
+    ageError: "العمر يجب أن يكون بين 18-45 عام",
+    bookingSubmit: "تأكيد الحجز",
+    bookingSuccess: "تم إرسال طلب الحجز بنجاح! سنتواصل معك قريباً"
   },
   
   en: {
-    // Main Page
+    // Navigation and Basic
     heroTitle: "Istanbul Summer Adventure Camp",
-    heroSubtitle: "An unforgettable adventure on Turkey's most beautiful beaches",
-    slogans: [
-      "Bring your laughter and leave your worries behind",
-      "Breathtaking adventures await you",
-      "New friendships and unforgettable memories",
-      "Live the moment and enjoy every second",
-      "Sea, mountains and endless adventures"
-    ],
+    heroSubtitle: "Unforgettable Adventure",
     bookNow: "Book Now",
-    whatsappContact: "Contact Us",
+    whatsappContact: "WhatsApp Contact",
     
-    // Activities
-    activitiesTitle: "Our Amazing Activities",
-    activities: {
-      rafting: "Exciting river rafting adventures",
-      zipline: "Zipline adventures through nature",
-      safari: "Safari tours with motors",
-      volleyball: "Beach volleyball",
-      football: "Beach football",
-      fireworks: "Spectacular fireworks shows",
-      barbecue: "Authentic Turkish barbecue parties",
-      photography: "Professional photo sessions",
-      drone: "Drone photography for memories"
-    },
+    // Animated Slogans
+    slogans: [
+      "Unforgettable adventure on Turkey's most beautiful beaches 🏖️",
+      "5 nights & 6 days of fun and adventure 🎯",
+      "Rafting, zipline, and exciting water activities 🚣‍♂️",
+      "BBQ parties and magical fireworks 🎆",
+      "Meet new friends from around the world 🌍",
+      "Professional photography and drone filming 📸"
+    ],
     
     // Trip Information
-    tripInfoTitle: "Trip Details",
-    duration: "5 nights and 6 days",
-    date: "July 15, 2025",
-    price: "$500 per person",
-    includes: "Including accommodation, meals, activities and transportation",
-    location: "Şile - Istanbul directly on the sea",
+    tripInfoTitle: "Trip Information",
+    date: "Date",
+    duration: "July 15, 2025 - 5 nights & 6 days",
+    price: "Price",
+    includes: "$500 all inclusive",
+    location: "Location",
     
-    // Included Services
+    // Activities
+    activitiesTitle: "Activities & Events",
+    activities: {
+      rafting: "Mountain river rafting",
+      zipline: "Thrilling zipline adventure",
+      safari: "ATV safari tours",
+      volleyball: "Beach volleyball",
+      football: "Group football",
+      fireworks: "Fireworks shows",
+      barbecue: "Turkish BBQ parties",
+      photography: "Professional photo sessions",
+      drone: "Aerial drone photography"
+    },
+    
+    // What's Included
     includedTitle: "What's Included",
     includedServices: [
-      "Accommodation in fully equipped camp",
-      "All meals and beverages",
-      "Turkish tea all day long",
-      "Transportation to and from Istanbul",
-      "All activities and events",
-      "Professional photography",
-      "Internet and electricity",
-      "Competitions and prizes"
+      "🏨 5-night accommodation in beautiful locations",
+      "🍽️ All meals and beverages",
+      "🚐 Transportation to/from Istanbul",
+      "🎯 All activities and events",
+      "📸 Professional photography sessions",
+      "🛸 Aerial drone photography",
+      "🎆 Fireworks shows",
+      "🔥 Turkish BBQ parties",
+      "☕ Authentic Turkish tea all day",
+      "💡 Free electricity and internet",
+      "🎁 Contests and special prizes",
+      "👥 Social and entertainment activities"
     ],
     
-    // Tips
-    bringTitle: "Don't forget to bring",
+    // What to Bring
+    bringTitle: "What to Bring",
     bringItems: [
-      "Sunglasses for protection",
-      "Comfortable sports shoes",
-      "Swimwear",
-      "Sunscreen",
-      "Comfortable clothes for activities",
-      "Personal camera for memories"
+      "🕶️ Sunglasses",
+      "👟 Comfortable sports shoes",
+      "🩱 Swimwear",
+      "🧴 Sunscreen",
+      "🎽 Sports clothing",
+      "📱 Phone charger",
+      "🧥 Light jacket for evenings",
+      "🩴 Water shoes",
+      "🎒 Small backpack for daily trips"
     ],
     
-    // Contact Information
+    // Contact
     contactTitle: "Contact Us",
-    address: "Istanbul - Fatih - Opposite Yusuf Pasha Tram No. 42 Office 8",
-    phone: "+905457307235",
-    
-    // Terms and Conditions
-    termsTitle: "Terms and Conditions",
-    termsContent: `
-      Terms and Conditions for Istanbul Summer Adventure Camp:
-
-      1. Age limit strictly from 18 to 45 years old
-      2. We welcome couples, friends and groups
-      3. Price includes all activities, meals, accommodation and transportation
-      4. Booking must be confirmed by paying the full amount
-      5. No cancellation allowed two weeks before the trip date
-      6. Participant is responsible for personal safety during activities
-      7. Must comply with camp rules and ethics
-      8. Smoking allowed only in designated areas
-      9. Respect others and the surrounding environment
-      10. Bringing personal ID or passport is mandatory
-    `,
-    agreeTerms: "I agree to the terms and conditions",
-    mustReadTerms: "(Must read terms and conditions first)",
+    address: "Istanbul - Fatih - Opposite Yusuf Pasha Tram, No: 42 Office 8",
+    phone: "+90 545 730 72 35",
     
     // Booking Page
     bookingTitle: "Book Your Adventure Now",
     participantsCount: "Number of Participants",
-    relationship: "Relationship",
+    relationship: "Relationship Type",
     couple: "Couple",
     friends: "Friends",
-    group: "Group",
+    personalInfo: "Personal Information",
     participant: "Participant",
-    participants: "Participants",
     husband: "Husband",
     wife: "Wife",
-    male: "Male",
-    female: "Female",
-    
-    // Personal Information
-    personalInfo: "Personal Information",
     name: "Full Name",
     birthDate: "Date of Birth",
     gender: "Gender",
+    male: "Male",
+    female: "Female",
     nationality: "Nationality",
     phone: "Phone Number",
     
-    // Payment Options
-    paymentTitle: "Payment Options",
+    // Payment
+    paymentTitle: "Payment Method",
     paymentMethods: {
       bankTransfer: "Bank Transfer",
-      cashOffice: "Cash Payment at Office",
       paypal: "PayPal",
-      instapay: "InstaPay",
       vodafoneCash: "Vodafone Cash",
+      instapay: "InstaPay",
       papara: "Papara",
-      revolut: "Revolut"
+      revolut: "Revolut",
+      cashOffice: "Cash at Office"
     },
     
+    // Price Summary
     totalAmount: "Total Amount",
     discount: "Discount",
     finalAmount: "Final Amount",
-    bookingSubmit: "Complete Booking & Payment",
     
-    // Error Messages
-    ageError: "Sorry, age limit is from 18 to 45 years. Hope to see you in a future trip!",
+    // Terms
+    agreeTerms: "I agree to the terms and conditions",
+    mustReadTerms: "(Please read the terms and conditions first)",
+    termsTitle: "Terms and Conditions",
+    termsContent: `Istanbul Summer Adventure Camp Terms and Conditions
+
+1. Allowed age range: 18 to 45 years only
+2. Valid passport required
+3. Full payment required before trip starts
+4. No refunds except in force majeure cases
+5. Company not responsible for lost personal belongings
+6. Must comply with camp rules and instructions
+7. Alcohol and drugs prohibited
+8. Company reserves right to refuse non-compliant participants
+9. 50% refund if cancelled 30+ days before trip
+10. Terms apply to all participants
+
+For inquiries: +90 545 730 72 35`,
+    
+    // Form Validation
     requiredField: "This field is required",
-    
-    // Success Messages
-    bookingSuccess: "Booking request sent successfully! We will contact you soon."
+    ageError: "Age must be between 18-45 years",
+    bookingSubmit: "Confirm Booking",
+    bookingSuccess: "Booking request sent successfully! We'll contact you soon"
   },
   
   tr: {
-    // Ana Sayfa
+    // Navigation and Basic
     heroTitle: "İstanbul Yaz Macera Kampı",
-    heroSubtitle: "Türkiye'nin en güzel plajlarında unutulmaz bir macera",
-    slogans: [
-      "Kahkahalarını getir, dertlerini arkada bırak",
-      "Nefes kesen maceralar seni bekliyor",
-      "Yeni dostluklar ve unutulmaz anılar",
-      "Anı yaşa ve her saniyenin tadını çıkar",
-      "Deniz, dağlar ve sonsuz maceralar"
-    ],
-    bookNow: "Şimdi Rezervasyon Yap",
-    whatsappContact: "Bizimle İletişime Geç",
+    heroSubtitle: "Unutulmaz Macera",
+    bookNow: "Hemen Rezervasyon",
+    whatsappContact: "WhatsApp İletişim",
     
-    // Aktiviteler
-    activitiesTitle: "Harika Aktivitelerimiz",
+    // Animated Slogans
+    slogans: [
+      "Türkiye'nin en güzel sahillerinde unutulmaz macera 🏖️",
+      "5 gece 6 gün eğlence ve macera dolu 🎯",
+      "Rafting, zipline ve heyecan verici su aktiviteleri 🚣‍♂️",
+      "BBQ partileri ve büyülü havai fişek gösterileri 🎆",
+      "Dünya çapında yeni arkadaşlıklar 🌍",
+      "Profesyonel fotoğrafçılık ve drone çekimi 📸"
+    ],
+    
+    // Trip Information
+    tripInfoTitle: "Gezi Bilgileri",
+    date: "Tarih",
+    duration: "15 Temmuz 2025 - 5 gece 6 gün",
+    price: "Fiyat",
+    includes: "500$ her şey dahil",
+    location: "Konum",
+    
+    // Activities
+    activitiesTitle: "Aktiviteler ve Etkinlikler",
     activities: {
-      rafting: "Heyecan verici nehir rafting maceraları",
-      zipline: "Doğada zipline maceraları",
-      safari: "Motorlarla safari turları",
+      rafting: "Dağ nehri raftingi",
+      zipline: "Heyecan verici zipline macerası",
+      safari: "ATV safari turları",
       volleyball: "Plaj voleybolu",
-      football: "Plaj futbolu",
-      fireworks: "Muhteşem havai fişek gösterileri",
-      barbecue: "Otantik Türk mangal partileri",
+      football: "Grup futbolu",
+      fireworks: "Havai fişek gösterileri",
+      barbecue: "Türk BBQ partileri",
       photography: "Profesyonel fotoğraf çekimleri",
-      drone: "Anılar için drone çekimi"
+      drone: "Havadan drone çekimi"
     },
     
-    // Gezi Bilgileri
-    tripInfoTitle: "Gezi Detayları",
-    duration: "5 gece 6 gün",
-    date: "15 Temmuz 2025",
-    price: "Kişi başı 500 dolar",
-    includes: "Konaklama, yemekler, aktiviteler ve ulaşım dahil",
-    location: "Şile - İstanbul deniz kenarında",
-    
-    // Dahil Olan Hizmetler
-    includedTitle: "Dahil Olan Hizmetler",
+    // What's Included
+    includedTitle: "Dahil Olanlar",
     includedServices: [
-      "Tam donanımlı kampta konaklama",
-      "Tüm yemekler ve içecekler",
-      "Gün boyu Türk çayı",
-      "İstanbul'a gidiş dönüş ulaşım",
-      "Tüm aktiviteler ve etkinlikler",
-      "Profesyonel fotoğrafçılık",
-      "İnternet ve elektrik",
-      "Yarışmalar ve hediyeler"
+      "🏨 Güzel lokasyonlarda 5 gece konaklama",
+      "🍽️ Tüm yemekler ve içecekler",
+      "🚐 İstanbul'dan gidiş-dönüş ulaşım",
+      "🎯 Tüm aktiviteler ve etkinlikler",
+      "📸 Profesyonel fotoğraf çekimleri",
+      "🛸 Havadan drone çekimi",
+      "🎆 Havai fişek gösterileri",
+      "🔥 Türk BBQ partileri",
+      "☕ Gün boyu otantik Türk çayı",
+      "💡 Ücretsiz elektrik ve internet",
+      "🎁 Yarışmalar ve özel hediyeler",
+      "👥 Sosyal ve eğlence aktiviteleri"
     ],
     
-    // İpuçları
-    bringTitle: "Yanında getirmeyi unutma",
+    // What to Bring
+    bringTitle: "Getirmeniz Gerekenler",
     bringItems: [
-      "Koruma için güneş gözlüğü",
-      "Rahat spor ayakkabı",
-      "Yüzme kıyafeti",
-      "Güneş koruyucu krem",
-      "Aktiviteler için rahat kıyafetler",
-      "Anılar için kişisel kamera"
+      "🕶️ Güneş gözlüğü",
+      "👟 Rahat spor ayakkabı",
+      "🩱 Mayo/şort",
+      "🧴 Güneş kremi",
+      "🎽 Spor kıyafetleri",
+      "📱 Telefon şarj aleti",
+      "🧥 Akşamlar için hafif ceket",
+      "🩴 Su ayakkabısı",
+      "🎒 Günlük geziler için küçük sırt çantası"
     ],
     
-    // İletişim Bilgileri
-    contactTitle: "Bizimle İletişime Geçin",
-    address: "İstanbul - Fatih - Yusuf Paşa Tramvayı Karşısı No: 42 Ofis 8",
-    phone: "+905457307235",
+    // Contact
+    contactTitle: "İletişim",
+    address: "İstanbul - Fatih - Yusuf Paşa Tramvay karşısı No: 42 Ofis 8",
+    phone: "+90 545 730 72 35",
     
-    // Şartlar ve Koşullar
-    termsTitle: "Şartlar ve Koşullar",
-    termsContent: `
-      İstanbul Yaz Macera Kampı Şartları ve Koşulları:
-
-      1. Yaş sınırı kesinlikle 18-45 yaş arası
-      2. Çiftleri, arkadaşları ve grupları memnuniyetle karşılıyoruz
-      3. Fiyat tüm aktiviteler, yemekler, konaklama ve ulaşımı içerir
-      4. Rezervasyon tam tutarı ödeyerek onaylanmalıdır
-      5. Gezi tarihinden iki hafta önce iptal edilemez
-      6. Katılımcı aktiviteler sırasında kişisel güvenliğinden sorumludur
-      7. Kamp kurallarına ve adabına uyulmalıdır
-      8. Sigara sadece belirlenmiş alanlarda içilebilir
-      9. Diğerlerine ve çevreye saygı gösterilmelidir
-      10. Kimlik veya pasaport getirmek zorunludur
-    `,
-    agreeTerms: "Şartları ve koşulları kabul ediyorum",
-    mustReadTerms: "(Önce şartları ve koşulları okumak gerekir)",
-    
-    // Rezervasyon Sayfası
-    bookingTitle: "Maceranı Şimdi Rezerve Et",
+    // Booking Page
+    bookingTitle: "Maceranızı Şimdi Rezerve Edin",
     participantsCount: "Katılımcı Sayısı",
-    relationship: "İlişki",
+    relationship: "İlişki Türü",
     couple: "Çift",
     friends: "Arkadaşlar",
-    group: "Grup",
+    personalInfo: "Kişisel Bilgiler",
     participant: "Katılımcı",
-    participants: "Katılımcılar",
     husband: "Eş (Erkek)",
     wife: "Eş (Kadın)",
-    male: "Erkek",
-    female: "Kadın",
-    
-    // Kişisel Bilgiler
-    personalInfo: "Kişisel Bilgiler",
     name: "Ad Soyad",
     birthDate: "Doğum Tarihi",
     gender: "Cinsiyet",
+    male: "Erkek",
+    female: "Kadın",
     nationality: "Uyruk",
     phone: "Telefon Numarası",
     
-    // Ödeme Seçenekleri
-    paymentTitle: "Ödeme Seçenekleri",
+    // Payment
+    paymentTitle: "Ödeme Yöntemi",
     paymentMethods: {
       bankTransfer: "Banka Havalesi",
-      cashOffice: "Ofiste Nakit Ödeme",
       paypal: "PayPal",
-      instapay: "InstaPay",
       vodafoneCash: "Vodafone Cash",
+      instapay: "InstaPay",
       papara: "Papara",
-      revolut: "Revolut"
+      revolut: "Revolut",
+      cashOffice: "Ofiste Nakit Ödeme"
     },
     
+    // Price Summary
     totalAmount: "Toplam Tutar",
     discount: "İndirim",
     finalAmount: "Ödenecek Tutar",
-    bookingSubmit: "Rezervasyonu Tamamla ve Öde",
     
-    // Hata Mesajları
-    ageError: "Üzgünüz, yaş sınırı 18-45 yaş arası. Gelecek gezilerde görüşmek dileğiyle!",
-    requiredField: "Bu alan zorunludur",
+    // Terms
+    agreeTerms: "Şartlar ve koşulları kabul ediyorum",
+    mustReadTerms: "(Lütfen önce şartlar ve koşulları okuyun)",
+    termsTitle: "Şartlar ve Koşullar",
+    termsContent: `İstanbul Yaz Macera Kampı Şartlar ve Koşullar
+
+1. İzin verilen yaş aralığı: Sadece 18-45 yaş arası
+2. Geçerli pasaport gerekli
+3. Tur başlamadan önce tam ödeme gerekli
+4. Mücbir sebep durumları hariç iade yok
+5. Şirket kişisel eşyaların kaybolmasından sorumlu değil
+6. Kamp kurallarına ve talimatlarına uyulmalı
+7. Alkol ve uyuşturucu yasak
+8. Şirket kurallara uymayan katılımcıları reddetme hakkını saklı tutar
+9. 30+ gün önceden iptal edilirse %50 iade
+10. Şartlar tüm katılımcılar için geçerli
+
+Sorular için: +90 545 730 72 35`,
     
-    // Başarı Mesajları
-    bookingSuccess: "Rezervasyon talebiniz başarıyla gönderildi! Yakında sizinle iletişime geçeceğiz."
+    // Form Validation
+    requiredField: "Bu alan zorunlu",
+    ageError: "Yaş 18-45 arasında olmalı",
+    bookingSubmit: "Rezervasyonu Onayla",
+    bookingSuccess: "Rezervasyon talebi başarıyla gönderildi! Yakında sizinle iletişime geçeceğiz"
   }
 };

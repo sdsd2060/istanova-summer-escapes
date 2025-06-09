@@ -7,6 +7,13 @@ import { COUNTRIES, PAYMENT_METHODS_BY_COUNTRY, CURRENCY_BY_COUNTRY, EXCHANGE_RA
 import LanguageSwitcher from '../components/LanguageSwitcher';
 import WhatsAppButton from '../components/WhatsAppButton';
 
+// Extend Window interface for PayPal
+declare global {
+  interface Window {
+    paypal?: any;
+  }
+}
+
 interface Participant {
   name: string;
   birthDate: string;
@@ -63,11 +70,26 @@ const Booking = () => {
 
   // تحديث عدد المشاركين
   useEffect(() => {
-    const newParticipants = Array.from({ length: participantsCount }, (_, index) => 
-      participants[index] || { name: '', birthDate: '', gender: 'male', nationality: '' }
-    );
+    const newParticipants = Array.from({ length: participantsCount }, (_, index) => {
+      const existing = participants[index];
+      if (existing) {
+        return existing;
+      }
+      
+      // For couples, set gender automatically
+      if (participantsCount === 2 && relationship === 'couple') {
+        return { 
+          name: '', 
+          birthDate: '', 
+          gender: (index === 0 ? 'male' : 'female') as 'male' | 'female', 
+          nationality: '' 
+        };
+      }
+      
+      return { name: '', birthDate: '', gender: 'male' as 'male' | 'female', nationality: '' };
+    });
     setParticipants(newParticipants);
-  }, [participantsCount]);
+  }, [participantsCount, relationship]);
 
   // تحديد طرق الدفع حسب الدولة
   const availablePaymentMethods = PAYMENT_METHODS_BY_COUNTRY[phoneCountry] || PAYMENT_METHODS_BY_COUNTRY.default;
@@ -173,6 +195,21 @@ const Booking = () => {
     }
   };
 
+  // Initialize PayPal when component mounts
+  useEffect(() => {
+    if (paymentMethod === 'paypal' && window.paypal) {
+      // Clear existing PayPal container
+      const container = document.getElementById('paypal-container-W3G4VFWKPBTUY');
+      if (container) {
+        container.innerHTML = '';
+        
+        window.paypal.HostedButtons({
+          hostedButtonId: "W3G4VFWKPBTUY",
+        }).render("#paypal-container-W3G4VFWKPBTUY");
+      }
+    }
+  }, [paymentMethod]);
+
   const priceInfo = calculatePrice();
 
   return (
@@ -183,9 +220,9 @@ const Booking = () => {
           <img 
             src="/images/logo.png" 
             alt="Istanova Logo" 
-            className="h-12 w-auto"
+            className="h-16 w-auto"
             onError={(e) => {
-              e.currentTarget.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI0MCIgZmlsbD0iIzMzNzNkYyIvPgogIDx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+SVNUQU5PVkE8L3RleHQ+Cjwvc3ZnPg==";
+              e.currentTarget.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNmZjZkMDA7c3RvcC1vcGFjaXR5OjEiIC8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6I2VjNDg5OTtzdG9wLW9wYWNpdHk6MSIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMTAwIiBmaWxsPSJ1cmwoI2dyYWQpIiByeD0iMTUiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjM1IiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+SVNUQU5PVkE8L3RleHQ+CiAgPHRleHQgeD0iMTAwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+QWR2ZW50dXJlIENhbXA8L3RleHQ+CiAgPHRleHQgeD0iMTAwIiB5PSI4MCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+2YXYrtmK2YUg2KXYs9i32YbYqNmI2YQg2KfZhNi12YrZgdmKPC90ZXh0Pgo8L3N2Zz4=";
             }}
           />
           <div className="text-white">
@@ -469,16 +506,6 @@ const Booking = () => {
                 {paymentMethod === 'paypal' && (
                   <div className="mt-4">
                     <div id="paypal-container-W3G4VFWKPBTUY"></div>
-                    <script
-                      src="https://www.paypal.com/sdk/js?client-id=BAAR53-Q3Fo3xAE9DRfKqIWPI7ErlaSOHo4sjvAERL0oFoF435VaOUEdf4PYXd3O1vGSLmxjK05v7FJViw&components=hosted-buttons&disable-funding=venmo&currency=USD"
-                      onLoad={() => {
-                        if (window.paypal) {
-                          window.paypal.HostedButtons({
-                            hostedButtonId: "W3G4VFWKPBTUY",
-                          }).render("#paypal-container-W3G4VFWKPBTUY");
-                        }
-                      }}
-                    ></script>
                   </div>
                 )}
               </div>
