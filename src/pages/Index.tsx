@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../hooks/useLanguage';
@@ -93,20 +92,97 @@ const Index = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="text-center p-6 bg-gray-50 rounded-xl shadow-lg">
               <div className="text-4xl mb-4">📅</div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-800">{t.date}</h3>
+              <h3 className="text-xl font-semibold mb-2 text-gray-800">{t.tripDate}</h3>
               <p className="text-gray-600">{t.duration}</p>
             </div>
             
             <div className="text-center p-6 bg-gray-50 rounded-xl shadow-lg">
               <div className="text-4xl mb-4">💰</div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-800">{t.price}</h3>
+              <h3 className="text-xl font-semibold mb-2 text-gray-800">{t.tripPrice}</h3>
               <p className="text-gray-600">{t.includes}</p>
             </div>
             
             <div className="text-center p-6 bg-gray-50 rounded-xl shadow-lg md:col-span-2 lg:col-span-1">
               <div className="text-4xl mb-4">🏖️</div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-800">{t.location}</h3>
+              <h3 className="text-xl font-semibold mb-2 text-gray-800">{t.tripLocation}</h3>
               <p className="text-gray-600">شيلا - إسطنبول</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Photo Gallery Section */}
+      <section className="py-20 bg-gradient-to-r from-purple-500 to-pink-500">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-4xl font-bold text-center mb-16 text-white">
+            صور من المخيمات السابقة
+          </h2>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="relative overflow-hidden rounded-xl shadow-lg hover:scale-105 transition-transform duration-300">
+              <img 
+                src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                alt="رافتنج في المياه البيضاء"
+                className="w-full h-64 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end">
+                <p className="text-white font-semibold p-4">رافتنج في المياه البيضاء</p>
+              </div>
+            </div>
+            
+            <div className="relative overflow-hidden rounded-xl shadow-lg hover:scale-105 transition-transform duration-300">
+              <img 
+                src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                alt="زيب لاين عبر الجبال"
+                className="w-full h-64 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end">
+                <p className="text-white font-semibold p-4">زيب لاين عبر الجبال</p>
+              </div>
+            </div>
+            
+            <div className="relative overflow-hidden rounded-xl shadow-lg hover:scale-105 transition-transform duration-300">
+              <img 
+                src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                alt="سفاري ATV"
+                className="w-full h-64 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end">
+                <p className="text-white font-semibold p-4">سفاري ATV</p>
+              </div>
+            </div>
+            
+            <div className="relative overflow-hidden rounded-xl shadow-lg hover:scale-105 transition-transform duration-300">
+              <img 
+                src="https://images.unsplash.com/photo-1530549387789-4c1017266635?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                alt="كرة الطائرة الشاطئية"
+                className="w-full h-64 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end">
+                <p className="text-white font-semibold p-4">كرة الطائرة الشاطئية</p>
+              </div>
+            </div>
+            
+            <div className="relative overflow-hidden rounded-xl shadow-lg hover:scale-105 transition-transform duration-300">
+              <img 
+                src="https://images.unsplash.com/photo-1555895550-e48b1d8bdcf6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                alt="شواء ليلي"
+                className="w-full h-64 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end">
+                <p className="text-white font-semibold p-4">شواء ليلي</p>
+              </div>
+            </div>
+            
+            <div className="relative overflow-hidden rounded-xl shadow-lg hover:scale-105 transition-transform duration-300">
+              <img 
+                src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                alt="ألعاب نارية"
+                className="w-full h-64 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end">
+                <p className="text-white font-semibold p-4">ألعاب نارية</p>
+              </div>
             </div>
           </div>
         </div>
