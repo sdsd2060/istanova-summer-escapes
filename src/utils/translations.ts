@@ -19,11 +19,11 @@ export const translations = {
     
     // Trip Information
     tripInfoTitle: "معلومات الرحلة",
-    date: "التاريخ",
+    tripDate: "التاريخ",
     duration: "15 يوليو 2025 - 5 ليالي و 6 أيام",
-    price: "السعر",
+    tripPrice: "السعر",
     includes: "500$ شامل كل شيء",
-    location: "الموقع",
+    tripLocation: "الموقع",
     
     // Activities
     activitiesTitle: "الأنشطة والفعاليات",
@@ -91,7 +91,7 @@ export const translations = {
     male: "ذكر",
     female: "أنثى",
     nationality: "الجنسية",
-    phone: "رقم الهاتف",
+    phoneNumber: "رقم الهاتف",
     
     // Payment
     paymentTitle: "طريقة الدفع",
@@ -155,11 +155,11 @@ export const translations = {
     
     // Trip Information
     tripInfoTitle: "Trip Information",
-    date: "Date",
+    tripDate: "Date",
     duration: "July 15, 2025 - 5 nights & 6 days",
-    price: "Price",
+    tripPrice: "Price",
     includes: "$500 all inclusive",
-    location: "Location",
+    tripLocation: "Location",
     
     // Activities
     activitiesTitle: "Activities & Events",
@@ -227,7 +227,7 @@ export const translations = {
     male: "Male",
     female: "Female",
     nationality: "Nationality",
-    phone: "Phone Number",
+    phoneNumber: "Phone Number",
     
     // Payment
     paymentTitle: "Payment Method",
@@ -291,11 +291,11 @@ For inquiries: +90 545 730 72 35`,
     
     // Trip Information
     tripInfoTitle: "Gezi Bilgileri",
-    date: "Tarih",
+    tripDate: "Tarih",
     duration: "15 Temmuz 2025 - 5 gece 6 gün",
-    price: "Fiyat",
+    tripPrice: "Fiyat",
     includes: "500$ her şey dahil",
-    location: "Konum",
+    tripLocation: "Konum",
     
     // Activities
     activitiesTitle: "Aktiviteler ve Etkinlikler",
@@ -363,7 +363,7 @@ For inquiries: +90 545 730 72 35`,
     male: "Erkek",
     female: "Kadın",
     nationality: "Uyruk",
-    phone: "Telefon Numarası",
+    phoneNumber: "Telefon Numarası",
     
     // Payment
     paymentTitle: "Ödeme Yöntemi",

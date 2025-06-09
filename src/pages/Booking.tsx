@@ -1,18 +1,14 @@
 
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useLanguage } from '../hooks/useLanguage';
 import { translations } from '../utils/translations';
 import { COUNTRIES, PAYMENT_METHODS_BY_COUNTRY, CURRENCY_BY_COUNTRY, EXCHANGE_RATES, BASE_PRICE } from '../utils/constants';
-import LanguageSwitcher from '../components/LanguageSwitcher';
+import BookingHeader from '../components/booking/BookingHeader';
+import ParticipantForm from '../components/booking/ParticipantForm';
+import PriceSummary from '../components/booking/PriceSummary';
+import PaymentSection from '../components/booking/PaymentSection';
+import TermsModal from '../components/booking/TermsModal';
 import WhatsAppButton from '../components/WhatsAppButton';
-
-// Extend Window interface for PayPal
-declare global {
-  interface Window {
-    paypal?: any;
-  }
-}
 
 interface Participant {
   name: string;
@@ -36,26 +32,26 @@ const Booking = () => {
   const [agreeTerms, setAgreeTerms] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
   const [errors, setErrors] = useState<any>({});
-  
-  // حساب السعر والخصم
+
+  // Calculate price and discount
   const calculatePrice = () => {
     let totalPrice = BASE_PRICE * participantsCount;
     let discount = 0;
     
     if (participantsCount === 2) {
       if (relationship === 'couple') {
-        discount = 0.10; // خصم 10% للأزواج
+        discount = 0.10; // 10% discount for couples
       } else if (relationship === 'friends') {
-        discount = 0.05; // خصم 5% للأصدقاء
+        discount = 0.05; // 5% discount for friends
       }
     } else if (participantsCount >= 3) {
-      discount = 0.10; // خصم 10% للمجموعات
+      discount = 0.10; // 10% discount for groups
     }
     
     const discountAmount = totalPrice * discount;
     const finalPrice = totalPrice - discountAmount;
     
-    // تحويل العملة
+    // Currency conversion
     const currency = CURRENCY_BY_COUNTRY[phoneCountry] || 'USD';
     const exchangeRate = EXCHANGE_RATES[currency] || 1;
     
@@ -68,7 +64,7 @@ const Booking = () => {
     };
   };
 
-  // تحديث عدد المشاركين
+  // Update participants count
   useEffect(() => {
     const newParticipants = Array.from({ length: participantsCount }, (_, index) => {
       const existing = participants[index];
@@ -91,10 +87,10 @@ const Booking = () => {
     setParticipants(newParticipants);
   }, [participantsCount, relationship]);
 
-  // تحديد طرق الدفع حسب الدولة
+  // Determine payment methods by country
   const availablePaymentMethods = PAYMENT_METHODS_BY_COUNTRY[phoneCountry] || PAYMENT_METHODS_BY_COUNTRY.default;
 
-  // التحقق من العمر
+  // Age validation
   const validateAge = (birthDate: string) => {
     const birth = new Date(birthDate);
     const today = new Date();
@@ -108,13 +104,20 @@ const Booking = () => {
     return age;
   };
 
-  // إرسال البيانات
+  // Update participant data
+  const updateParticipant = (index: number, field: keyof Participant, value: string) => {
+    const newParticipants = [...participants];
+    newParticipants[index] = { ...newParticipants[index], [field]: value };
+    setParticipants(newParticipants);
+  };
+
+  // Submit form
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     const newErrors: any = {};
     
-    // التحقق من البيانات
+    // Validation
     if (!agreeTerms) {
       newErrors.terms = t.mustReadTerms;
     }
@@ -153,7 +156,7 @@ const Booking = () => {
     setErrors(newErrors);
     
     if (Object.keys(newErrors).length === 0) {
-      // إرسال البيانات إلى formspree
+      // Send data to formspree
       const formData = new FormData();
       formData.append('participantsCount', participantsCount.toString());
       formData.append('relationship', relationship);
@@ -181,7 +184,7 @@ const Booking = () => {
         
         if (response.ok) {
           alert(t.bookingSuccess);
-          // إعادة تعيين النموذج
+          // Reset form
           setParticipantsCount(1);
           setParticipants([{ name: '', birthDate: '', gender: 'male', nationality: '' }]);
           setPhoneNumber('');
@@ -195,42 +198,11 @@ const Booking = () => {
     }
   };
 
-  // Initialize PayPal when component mounts
-  useEffect(() => {
-    if (paymentMethod === 'paypal' && window.paypal) {
-      // Clear existing PayPal container
-      const container = document.getElementById('paypal-container-W3G4VFWKPBTUY');
-      if (container) {
-        container.innerHTML = '';
-        
-        window.paypal.HostedButtons({
-          hostedButtonId: "W3G4VFWKPBTUY",
-        }).render("#paypal-container-W3G4VFWKPBTUY");
-      }
-    }
-  }, [paymentMethod]);
-
   const priceInfo = calculatePrice();
 
   return (
     <div className={`min-h-screen bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 ${language === 'ar' ? 'rtl' : 'ltr'}`}>
-      {/* Header */}
-      <header className="flex justify-between items-center p-6">
-        <Link to="/" className="flex items-center space-x-4">
-          <img 
-            src="/images/logo.png" 
-            alt="Istanova Logo" 
-            className="h-16 w-auto"
-            onError={(e) => {
-              e.currentTarget.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNmZjZkMDA7c3RvcC1vcGFjaXR5OjEiIC8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6I2VjNDg5OTtzdG9wLW9wYWNpdHk6MSIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMTAwIiBmaWxsPSJ1cmwoI2dyYWQpIiByeD0iMTUiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjM1IiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+SVNUQU5PVkE8L3RleHQ+CiAgPHRleHQgeD0iMTAwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+QWR2ZW50dXJlIENhbXA8L3RleHQ+CiAgPHRleHQgeD0iMTAwIiB5PSI4MCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+2YXYrtmK2YUg2KXYs9i32YbYqNmI2YQg2KfZhNi12YrZgdmKPC90ZXh0Pgo8L3N2Zz4=";
-            }}
-          />
-          <div className="text-white">
-            <h1 className="text-lg font-bold">ISTANOVA</h1>
-          </div>
-        </Link>
-        <LanguageSwitcher />
-      </header>
+      <BookingHeader />
 
       <div className="max-w-4xl mx-auto px-6 py-12">
         <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
@@ -240,7 +212,7 @@ const Booking = () => {
           </div>
 
           <form onSubmit={handleSubmit} className="p-8 space-y-8">
-            {/* عدد المشاركين */}
+            {/* Participants count */}
             <div>
               <label className="block text-lg font-semibold text-gray-700 mb-4">
                 {t.participantsCount}
@@ -256,7 +228,7 @@ const Booking = () => {
               </select>
             </div>
 
-            {/* العلاقة (للشخصين فقط) */}
+            {/* Relationship (for 2 people only) */}
             {participantsCount === 2 && (
               <div>
                 <label className="block text-lg font-semibold text-gray-700 mb-4">
@@ -292,120 +264,31 @@ const Booking = () => {
               </div>
             )}
 
-            {/* بيانات المشاركين */}
+            {/* Participants data */}
             <div>
               <h2 className="text-2xl font-bold text-gray-800 mb-6">{t.personalInfo}</h2>
               
               {participants.map((participant, index) => (
-                <div key={index} className="mb-8 p-6 bg-gray-50 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-700 mb-4">
-                    {participantsCount === 1 ? t.participant :
-                     participantsCount === 2 && relationship === 'couple' ? 
-                       (index === 0 ? t.husband : t.wife) :
-                     `${t.participant} ${index + 1}`}
-                  </h3>
-                  
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        {t.name}
-                      </label>
-                      <input
-                        type="text"
-                        value={participant.name}
-                        onChange={(e) => {
-                          const newParticipants = [...participants];
-                          newParticipants[index].name = e.target.value;
-                          setParticipants(newParticipants);
-                        }}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                        required
-                      />
-                      {errors[`participant_${index}_name`] && (
-                        <p className="text-red-500 text-sm mt-1">{errors[`participant_${index}_name`]}</p>
-                      )}
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        {t.birthDate}
-                      </label>
-                      <input
-                        type="date"
-                        value={participant.birthDate}
-                        onChange={(e) => {
-                          const newParticipants = [...participants];
-                          newParticipants[index].birthDate = e.target.value;
-                          setParticipants(newParticipants);
-                        }}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                        required
-                      />
-                      {errors[`participant_${index}_birthDate`] && (
-                        <p className="text-red-500 text-sm mt-1">{errors[`participant_${index}_birthDate`]}</p>
-                      )}
-                      {errors[`participant_${index}_age`] && (
-                        <p className="text-red-500 text-sm mt-1">{errors[`participant_${index}_age`]}</p>
-                      )}
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        {t.gender}
-                      </label>
-                      <select
-                        value={participant.gender}
-                        onChange={(e) => {
-                          const newParticipants = [...participants];
-                          newParticipants[index].gender = e.target.value as 'male' | 'female';
-                          setParticipants(newParticipants);
-                        }}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                        disabled={participantsCount === 2 && relationship === 'couple'}
-                      >
-                        <option value="male">{t.male}</option>
-                        <option value="female">{t.female}</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        {t.nationality}
-                      </label>
-                      <select
-                        value={participant.nationality}
-                        onChange={(e) => {
-                          const newParticipants = [...participants];
-                          newParticipants[index].nationality = e.target.value;
-                          setParticipants(newParticipants);
-                        }}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                        required
-                      >
-                        <option value="">{t.nationality}</option>
-                        {COUNTRIES.map(country => (
-                          <option key={country.code} value={country.code}>
-                            {country.flag} {country.name[language]}
-                          </option>
-                        ))}
-                      </select>
-                      {errors[`participant_${index}_nationality`] && (
-                        <p className="text-red-500 text-sm mt-1">{errors[`participant_${index}_nationality`]}</p>
-                      )}
-                    </div>
-                  </div>
-                  
+                <div key={index}>
+                  <ParticipantForm
+                    participant={participant}
+                    index={index}
+                    participantsCount={participantsCount}
+                    relationship={relationship}
+                    onUpdate={updateParticipant}
+                    errors={errors}
+                  />
                   {index < participants.length - 1 && (
-                    <div className="mt-6 border-b border-gray-200"></div>
+                    <div className="border-b border-gray-200 mb-6"></div>
                   )}
                 </div>
               ))}
             </div>
 
-            {/* رقم الهاتف */}
+            {/* Phone number */}
             <div>
               <label className="block text-lg font-semibold text-gray-700 mb-4">
-                {t.phone}
+                {t.phoneNumber}
               </label>
               <div className="flex gap-2">
                 <select
@@ -433,85 +316,18 @@ const Booking = () => {
               )}
             </div>
 
-            {/* معلومات السعر */}
-            <div className="bg-blue-50 p-6 rounded-lg">
-              <h3 className="text-xl font-bold text-gray-800 mb-4">ملخص الحجز</h3>
-              <div className="space-y-2">
-                <div className="flex justify-between">
-                  <span>{t.totalAmount}:</span>
-                  <span>{priceInfo.totalPrice} USD</span>
-                </div>
-                {priceInfo.discountAmount > 0 && (
-                  <div className="flex justify-between text-green-600">
-                    <span>{t.discount}:</span>
-                    <span>-{priceInfo.discountAmount.toFixed(2)} USD</span>
-                  </div>
-                )}
-                <div className="border-t pt-2">
-                  <div className="flex justify-between text-lg font-bold">
-                    <span>{t.finalAmount}:</span>
-                    <span>{priceInfo.finalPriceInCurrency.toFixed(2)} {priceInfo.currency}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {/* Price summary */}
+            <PriceSummary priceInfo={priceInfo} />
 
-            {/* طرق الدفع */}
-            <div>
-              <label className="block text-lg font-semibold text-gray-700 mb-4">
-                {t.paymentTitle}
-              </label>
-              <div className="grid md:grid-cols-2 gap-4">
-                {availablePaymentMethods.map(method => (
-                  <button
-                    key={method}
-                    type="button"
-                    onClick={() => setPaymentMethod(method)}
-                    className={`p-4 rounded-lg border-2 text-lg font-medium transition-all ${
-                      paymentMethod === method 
-                        ? 'border-blue-500 bg-blue-50 text-blue-700' 
-                        : 'border-gray-300 text-gray-700 hover:border-blue-300'
-                    }`}
-                  >
-                    {t.paymentMethods[method]}
-                  </button>
-                ))}
-              </div>
-              {errors.payment && (
-                <p className="text-red-500 text-sm mt-2">{errors.payment}</p>
-              )}
-            </div>
+            {/* Payment methods */}
+            <PaymentSection
+              paymentMethod={paymentMethod}
+              availablePaymentMethods={availablePaymentMethods}
+              onPaymentMethodChange={setPaymentMethod}
+              errors={errors}
+            />
 
-            {/* معلومات الدفع */}
-            {paymentMethod && (
-              <div className="bg-yellow-50 p-6 rounded-lg">
-                <h4 className="font-bold text-gray-800 mb-3">معلومات الدفع:</h4>
-                {paymentMethod === 'bankTransfer' && (
-                  <div>
-                    <p><strong>رقم الحساب:</strong> TR520020300008722885000001</p>
-                    <p><strong>اسم صاحب الحساب:</strong> JEHAD O. A. ABUSABRA</p>
-                    <p><strong>السويفت كود:</strong> ISBKTRIS</p>
-                  </div>
-                )}
-                {paymentMethod === 'vodafoneCash' && (
-                  <div>
-                    <p><strong>رقم فودافون كاش:</strong> 0104723155</p>
-                  </div>
-                )}
-                {paymentMethod === 'cashOffice' && (
-                  <div>
-                    <p><strong>العنوان:</strong> إسطنبول - الفاتح - مقابل ترام واي يوسف باشا رقم 42 مكتب 8</p>
-                  </div>
-                )}
-                {paymentMethod === 'paypal' && (
-                  <div className="mt-4">
-                    <div id="paypal-container-W3G4VFWKPBTUY"></div>
-                  </div>
-                )}
-              </div>
-            )}
-
-            {/* الشروط والأحكام */}
+            {/* Terms and conditions */}
             <div>
               <div className="flex items-start space-x-3">
                 <input
@@ -539,7 +355,7 @@ const Booking = () => {
               )}
             </div>
 
-            {/* زر الإرسال */}
+            {/* Submit button */}
             <button
               type="submit"
               className="w-full bg-gradient-to-r from-orange-500 to-pink-500 text-white py-4 px-8 rounded-lg text-xl font-bold hover:scale-105 transition-all duration-300 shadow-lg"
@@ -550,44 +366,15 @@ const Booking = () => {
         </div>
       </div>
 
-      {/* نافذة منبثقة للشروط والأحكام */}
-      {showTerms && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg max-w-2xl max-h-[80vh] overflow-y-auto">
-            <div className="p-6">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-2xl font-bold text-gray-800">{t.termsTitle}</h3>
-                <button
-                  onClick={() => setShowTerms(false)}
-                  className="text-gray-500 hover:text-gray-700 text-2xl"
-                >
-                  ×
-                </button>
-              </div>
-              <div className="prose prose-sm text-gray-700">
-                <pre className="whitespace-pre-wrap font-sans">{t.termsContent}</pre>
-              </div>
-              <div className="mt-6 flex gap-4">
-                <button
-                  onClick={() => {
-                    setAgreeTerms(true);
-                    setShowTerms(false);
-                  }}
-                  className="flex-1 bg-green-500 text-white py-3 rounded-lg font-medium hover:bg-green-600"
-                >
-                  أوافق على الشروط
-                </button>
-                <button
-                  onClick={() => setShowTerms(false)}
-                  className="flex-1 bg-gray-500 text-white py-3 rounded-lg font-medium hover:bg-gray-600"
-                >
-                  إغلاق
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Terms modal */}
+      <TermsModal
+        showTerms={showTerms}
+        onClose={() => setShowTerms(false)}
+        onAgree={() => {
+          setAgreeTerms(true);
+          setShowTerms(false);
+        }}
+      />
 
       <WhatsAppButton />
     </div>
